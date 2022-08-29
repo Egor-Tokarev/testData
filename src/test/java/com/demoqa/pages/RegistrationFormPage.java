@@ -2,11 +2,14 @@ package com.demoqa.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import com.demoqa.pages.components.CalendarComponent;
+import com.demoqa.pages.components.HobbiesComponent;
 import com.demoqa.pages.components.ResultsModal;
+import com.demoqa.pages.components.SubjectsComponent;
 
 import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
@@ -15,6 +18,8 @@ public class RegistrationFormPage {
 
     private CalendarComponent calendarComponent = new CalendarComponent();
     private ResultsModal  resultsModal = new ResultsModal();
+    private SubjectsComponent subjectsComponent = new SubjectsComponent();
+    private HobbiesComponent hobbiesComponent = new HobbiesComponent();
 
     //Elements
     private SelenideElement
@@ -22,8 +27,8 @@ public class RegistrationFormPage {
             lastNameInput = $("#lastName"), // переменная фамилии
             emailInput = $("#userEmail"), // переменная email
             numberInput = $("#userNumber"),
-            subInput = $("#subjectsInput"),
-            hobbies = $("#hobbiesWrapper"),
+         //   subInput = $("#subjectsInput"),
+         //   hobbies = $("#hobbiesWrapper"),
             picture = $("#uploadPicture"),
             adressInput =  $("#currentAddress");
 
@@ -75,13 +80,15 @@ public class RegistrationFormPage {
         return this;
     }
     // subject
-    public RegistrationFormPage setSubjects(String subject) {
-        subInput.setValue(subject).pressEnter();
+    public RegistrationFormPage setSubjects(String value) {
+        $("#subjectsInput").click();
+        subjectsComponent.setSubjects(value); // new component
         return this;
     }
     // хобби
     public RegistrationFormPage setHobbies(String hobbie) {
-        hobbies.$(byText(hobbie)).click();
+        hobbiesComponent.setHobie(hobbie);
+       // $("#hobbiesWrapper").$(byText(hobbie)).click();
         return this;
     }
 
