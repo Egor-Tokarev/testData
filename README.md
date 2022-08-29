@@ -1,4 +1,4 @@
-PageObjects 
++ PageObjects 
 + Components
  
 Аннотации:
