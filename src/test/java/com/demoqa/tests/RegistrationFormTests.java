@@ -6,7 +6,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationFormTests {
@@ -36,7 +35,7 @@ public class RegistrationFormTests {
                 .setSubjects("Math")
                 .setHobbies("Sports")
                 .uploadPicture("src/test/java/resources/ccc.png")
-                .setAdress("Some address 1")
+                .setAddress("Some address 1")
                 .setState("NCR")
                 .setCity("Delhi")
                 .pressSubmit();

@@ -39,8 +39,8 @@ public class RegistrationFormPage {
         return this;
     }
     // имя
-    public RegistrationFormPage setFirstName(String value) {
-        firstNameInput.setValue(value);
+    public RegistrationFormPage setFirstName(String Name) {
+        firstNameInput.setValue(Name);
         return this;
     }
     // очистка имени
@@ -49,23 +49,23 @@ public class RegistrationFormPage {
         return this;
     }
     // фамилия
-    public RegistrationFormPage setLastName (String value) {
-        lastNameInput.setValue(value);
+    public RegistrationFormPage setLastName (String Lastname) {
+        lastNameInput.setValue(Lastname);
         return this;
     }
     // email
-    public RegistrationFormPage setEmail (String value) {
-        emailInput.setValue(value);
+    public RegistrationFormPage setEmail (String email) {
+        emailInput.setValue(email);
         return this;
 }
     // выбор пола
-    public RegistrationFormPage setGender (String value) {
-        $("#genterWrapper").$(byText(value)).click();
+    public RegistrationFormPage setGender (String gender) {
+        $("#genterWrapper").$(byText(gender)).click();
         return this;
     }
     // номер телефона
-    public RegistrationFormPage setNumber (String value) {
-        numberInput.setValue(value); // ?
+    public RegistrationFormPage setNumber (String number) {
+        numberInput.setValue(number); // ?
         return this;
     }
     // др
@@ -75,13 +75,13 @@ public class RegistrationFormPage {
         return this;
     }
     // subject
-    public RegistrationFormPage setSubjects(String value) {
-        subInput.setValue(value).pressEnter();
+    public RegistrationFormPage setSubjects(String subject) {
+        subInput.setValue(subject).pressEnter();
         return this;
     }
     // хобби
-    public RegistrationFormPage setHobbies(String value) {
-        hobbies.$(byText(value)).click();
+    public RegistrationFormPage setHobbies(String hobbie) {
+        hobbies.$(byText(hobbie)).click();
         return this;
     }
 
@@ -93,8 +93,8 @@ public class RegistrationFormPage {
         return this;
     }
     // адрес
-    public RegistrationFormPage setAdress(String value) {
-        adressInput.setValue(value);
+    public RegistrationFormPage setAddress(String address) {
+        adressInput.setValue(address);
         return this;
     }
     // выбор штата
