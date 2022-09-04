@@ -2,15 +2,17 @@ package com.demoqa.tests;
 
 import com.demoqa.pages.RegistrationFormPage;
 import com.demoqa.utils.RandomUtils;
-import org.junit.jupiter.api.BeforeAll;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.demoqa.tests.TestData.*;
+import java.util.Locale;
+
 import static java.lang.String.format;
 
-public class RegistrationFormWithRandomUtilsTests extends TestBase { // наследнование из класса TestBase
+public class RegistrationFormWithFakerTests extends TestBase { // наследнование из класса TestBase
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
+    Faker faker = new Faker(new Locale("ru"));
 
     String firstName,
             lastName,
@@ -18,19 +20,22 @@ public class RegistrationFormWithRandomUtilsTests extends TestBase { // насл
             userNumber,
             day,
             month,
-            year;
+            year,
+            currentAddress;
 
 
     @BeforeEach
     void prepareTestDate() {
-        //    firstName = RandomUtils.getRandomString1(10);
-        firstName = RandomUtils.getRandomString(10);
-        lastName = RandomUtils.getRandomString(10);
-        userEmail = RandomUtils.getRandomEmail();
-        userNumber = RandomUtils.getRandomPhone();
-        day = "30";
+
+        firstName = faker.name().firstName();
+        lastName = faker.name().lastName();
+        userEmail = faker.internet().emailAddress();
+        userNumber = faker.number().numberBetween(1111111111L, 9999999999L) + "";
+        day = faker.number().numberBetween(1, 30) + "";
         month = "July";
+       // month = faker.;
         year = "2008";
+        currentAddress = faker.address().fullAddress();
     }
 
     @Test
@@ -40,12 +45,12 @@ public class RegistrationFormWithRandomUtilsTests extends TestBase { // насл
                 .setLastName(lastName)
                 .setEmail(userEmail)
                 .setGender("Other")
-                .setNumber("89995556677")
+                .setNumber(userNumber)
                 .setBirthDate(day, month, year)
                 .setSubjects("Math")
                 .setHobbies("Sports")
                 .uploadPicture("src/test/java/resources/ccc.png")
-                .setAddress("Some address 1")
+                .setAddress(currentAddress)
                 .setState("NCR")
                 .setCity("Delhi")
                 .pressSubmit();
