@@ -1,38 +1,23 @@
 package com.demoqa.tests;
 
-import com.codeborne.selenide.Configuration;
 import com.demoqa.pages.RegistrationFormPage;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.demoqa.tests.TestData.*;
+import static java.lang.String.format;
 
-public class RegistrationFormTests {
+public class RegistrationFormWithRandomUtilsTests extends TestBase { // наследнование из класса TestBase
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
-
-    @BeforeAll
-    static void configure() {
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-        Configuration.holdBrowserOpen = true;
-    }
-    @AfterAll
-    static void closing(){
-        // закрываем модалку после проверки
-        $("#closeLargeModal").scrollIntoView(true).click();
-    }
-
+     
     @Test
     void fillFormTest() {
         registrationFormPage.openPage()
-                .setFirstName("Egor")
-                .setLastName("Auto")
+                .setFirstName(firstName)
+                .setLastName(lastName)
                 .setEmail("egor@mail.ru")
                 .setGender("Other")
-                .setNumber("89995556677") // new
-                .setBirthDate("30", "July", "2008")
+                .setNumber("89995556677")
+                .setBirthDate(day, month, year)
                 .setSubjects("Math")
                 .setHobbies("Sports")
                 .uploadPicture("src/test/java/resources/ccc.png")
@@ -41,16 +26,20 @@ public class RegistrationFormTests {
                 .setCity("Delhi")
                 .pressSubmit();
 
+        // String expectedFullName = firstName + lastName; // общее имя для красоты
+        String expectedFullName = format("%s %s", firstName, firstName);
+        String expectedDateOfBirth = format("%s %s,%s", day, month, year);
         registrationFormPage.checkResultsTableVisible()
-                .checkResult("Student Name", "Egor Auto")
+                .checkResult("Student Name", expectedFullName)
                 .checkResult("Student Email", "egor@mail.ru")
                 .checkResult("Gender", "Other")
                 .checkResult("Mobile", "8999555667")
-                .checkResult("Date of Birth", "30 July,2008")
-                .checkResult("Subjects", "Math") // ? сравнить табл
+                .checkResult("Date of Birth", expectedDateOfBirth)
+                .checkResult("Subjects", "Math")
                 .checkResult("Hobbies", "Sports")
                 .checkResult("Picture", "ccc.png")
                 .checkResult("Address", "Some address 1")
                 .checkResult("State and City", "NCR Delhi");
     }
+
 }
