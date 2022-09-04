@@ -10,65 +10,41 @@ import java.util.Locale;
 
 import static java.lang.String.format;
 
-public class RegistrationFormWithFakerTests extends TestBase { // наследнование из класса TestBase
+public class RegistrationFormWithFakerTests extends TestBase { // наследование из класса TestBase
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
-    Faker faker = new Faker(new Locale("ru"));
-
-    String firstName,
-            lastName,
-            userEmail,
-            userNumber,
-            day,
-            month,
-            year,
-            currentAddress;
-
-
-    @BeforeEach
-    void prepareTestDate() {
-
-        firstName = faker.name().firstName();
-        lastName = faker.name().lastName();
-        userEmail = faker.internet().emailAddress();
-        userNumber = faker.number().numberBetween(1111111111L, 9999999999L) + "";
-        day = faker.number().numberBetween(1, 30) + "";
-        month = "July";
-       // month = faker.;
-        year = "2008";
-        currentAddress = faker.address().fullAddress();
-    }
 
     @Test
     void fillFormTest() {
         registrationFormPage.openPage()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(userEmail)
-                .setGender("Other")
-                .setNumber(userNumber)
-                .setBirthDate(day, month, year)
-                .setSubjects("Math")
-                .setHobbies("Sports")
+                .setFirstName(TestData.firstName)
+                .setLastName(TestData.lastName)
+                .setEmail(TestData.userEmail)
+                .setGender(TestData.gender)
+                .setNumber(TestData.userNumber)
+                .setBirthDate(TestData.day, TestData.month, TestData.year)
+                .setSubjects(TestData.subjects)
+                .setHobbies(TestData.hobbies) // сделать рандом из 3 на выбор
                 .uploadPicture("src/test/java/resources/ccc.png")
-                .setAddress(currentAddress)
-                .setState("NCR")
-                .setCity("Delhi")
+                .setAddress(TestData.currentAddress)
+                .setState(TestData.state)
+                .setCity(TestData.city)
                 .pressSubmit();
 
-        // String expectedFullName = firstName + lastName; // общее имя для красоты
-        String expectedFullName = format("%s %s", firstName, firstName);
-        String expectedDateOfBirth = format("%s %s,%s", day, month, year);
+         String expectedFullName = TestData.firstName + " " + TestData.lastName; // общее имя для красоты
+       // String expectedFullName = format("%s %s", TestData.firstName, TestData.firstName);
+        String expectedDateOfBirth = format("%s %s,%s", TestData.day, TestData.month, TestData.year);
+        String expectedFullCity = format("%s %s", TestData.state, TestData.city);
         registrationFormPage.checkResultsTableVisible()
                 .checkResult("Student Name", expectedFullName)
-                .checkResult("Student Email", userEmail)
-                .checkResult("Gender", "Other")
-                .checkResult("Mobile", "8999555667")
+                .checkResult("Student Email", TestData.userEmail)
+                .checkResult("Gender", TestData.gender)
+                .checkResult("Mobile", TestData.userNumber)
                 .checkResult("Date of Birth", expectedDateOfBirth)
-                .checkResult("Subjects", "Math")
-                .checkResult("Hobbies", "Sports")
+                .checkResult("Subjects", TestData.subjects)
+                .checkResult("Hobbies", TestData.hobbies)
                 .checkResult("Picture", "ccc.png")
-                .checkResult("Address", "Some address 1")
-                .checkResult("State and City", "NCR Delhi");
+                .checkResult("Address", TestData.currentAddress)
+                .checkResult("State and City", expectedFullCity);
     }
 
 }
