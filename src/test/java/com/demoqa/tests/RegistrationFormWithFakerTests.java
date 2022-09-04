@@ -46,5 +46,4 @@ public class RegistrationFormWithFakerTests extends TestBase { // наследо
                 .checkResult("Address", TestData.currentAddress)
                 .checkResult("State and City", expectedFullCity);
     }
-
 }
