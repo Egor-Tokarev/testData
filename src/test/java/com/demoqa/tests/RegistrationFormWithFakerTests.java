@@ -30,8 +30,8 @@ public class RegistrationFormWithFakerTests extends TestBase { // наследо
                 .setCity(TestData.city)
                 .pressSubmit();
 
-         String expectedFullName = TestData.firstName + " " + TestData.lastName; // общее имя для красоты
-       // String expectedFullName = format("%s %s", TestData.firstName, TestData.firstName);
+        String expectedFullName = TestData.firstName + " " + TestData.lastName; // общее имя для красоты
+        // String expectedFullName = format("%s %s", TestData.firstName, TestData.firstName);
         String expectedDateOfBirth = format("%s %s,%s", TestData.day, TestData.month, TestData.year);
         String expectedFullCity = format("%s %s", TestData.state, TestData.city);
         registrationFormPage.checkResultsTableVisible()
