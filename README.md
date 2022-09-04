@@ -1,12 +1,13 @@
 + PageObjects 
 + Components
-+ TestData - переменные в коде пока что
++ TestData 
++ Использование Faker для генерации данных
  
 Аннотации:
 @BeforeAll
 @AfterAll
 @Test
  
-Сайт:
+Сайт для теста:
 https://demoqa.com 
  
