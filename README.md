@@ -1,5 +1,6 @@
 + PageObjects 
 + Components
++ TestData - переменные в коде пока что
  
 Аннотации:
 @BeforeAll
