@@ -20,5 +20,6 @@ public class TestData {
            subjects = "Math",
            hobbies = "Sports",
            state = "NCR",
-           city = "Delhi";
+           city = "Delhi",
+   pic = "src/test/java/resources/ccc.png";
 }
