@@ -23,8 +23,7 @@ public class RegistrationFormWithFakerTests extends TestBase { // наследо
                 .setNumber(TestData.userNumber)
                 .setBirthDate(TestData.day, TestData.month, TestData.year)
                 .setSubjects(TestData.subjects)
-                .setHobbies(TestData.hobbies) // сделать рандом из 3 на выбор
-               // .uploadPicture("src/test/java/resources/ccc.png")
+                .setHobbies(TestData.hobbies)
                 .uploadPicture(TestData.pic)
                 .setAddress(TestData.currentAddress)
                 .setState(TestData.state)
